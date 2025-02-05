@@ -1,7 +1,7 @@
 {
   "domain": "open_meteo_solar_forecast",
-  "name": "Open-Meteo Solar Forecast",
-  "codeowners": ["@rany2"],
+  "name": "Open-Meteo Solar Forecast TEST",
+  "codeowners": ["@luca3s"],
   "config_flow": true,
   "documentation": "https://github.com/rany2/ha-open-meteo-solar-forecast",
   "integration_type": "service",
