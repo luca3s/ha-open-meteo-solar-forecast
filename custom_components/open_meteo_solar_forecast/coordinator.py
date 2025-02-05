@@ -15,6 +15,7 @@ from open_meteo_solar_forecast import Estimate, OpenMeteoSolarForecast
 from .const import (
     CONF_AZIMUTH,
     CONF_BASE_URL,
+    CONF_WEATHER_MODEL,
     CONF_DAMPING_EVENING,
     CONF_DAMPING_MORNING,
     CONF_DECLINATION,
@@ -38,12 +39,14 @@ class OpenMeteoSolarForecastDataUpdateCoordinator(DataUpdateCoordinator[Estimate
         # Our option flow may cause it to be an empty string,
         # this if statement is here to catch that.
         api_key = entry.options.get(CONF_API_KEY) or None
+        weather_model = entry.options.get(CONF_WEATHER_MODEL) or None
 
         # Handle new options that were added after the initial release
         ac_kwp = entry.options.get(CONF_INVERTER_POWER, 0)
         ac_kwp = ac_kwp / 1000 if ac_kwp else None
 
         self.forecast = OpenMeteoSolarForecast(
+            weather_model=weather_model,
             api_key=api_key,
             session=async_get_clientsession(hass),
             latitude=entry.data[CONF_LATITUDE],

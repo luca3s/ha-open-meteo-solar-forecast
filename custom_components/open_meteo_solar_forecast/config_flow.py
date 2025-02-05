@@ -13,6 +13,7 @@ from homeassistant.helpers import config_validation as cv
 from .const import (
     CONF_AZIMUTH,
     CONF_BASE_URL,
+    CONF_WEATHER_MODEL,
     CONF_DAMPING_EVENING,
     CONF_DAMPING_MORNING,
     CONF_DECLINATION,
@@ -54,6 +55,7 @@ class OpenMeteoSolarForecastFlowHandler(ConfigFlow, domain=DOMAIN):
                 },
                 options={
                     CONF_API_KEY: user_input[CONF_API_KEY],
+                    CONF_WEATHER_MODEL: user_input[CONF_WEATHER_MODEL],
                     CONF_AZIMUTH: user_input[CONF_AZIMUTH],
                     CONF_BASE_URL: user_input[CONF_BASE_URL],
                     CONF_DAMPING_MORNING: user_input[CONF_DAMPING_MORNING],
@@ -70,6 +72,7 @@ class OpenMeteoSolarForecastFlowHandler(ConfigFlow, domain=DOMAIN):
             data_schema=vol.Schema(
                 {
                     vol.Optional(CONF_API_KEY, default=""): str,
+                    vol.Optional(CONF_WEATHER_MODEL, default=""): str,
                     vol.Required(
                         CONF_BASE_URL, default="https://api.open-meteo.com"
                     ): str,
@@ -126,6 +129,14 @@ class OpenMeteoSolarForecastOptionFlowHandler(OptionsFlow):
                         description={
                             "suggested_value": self.config_entry.options.get(
                                 CONF_API_KEY, ""
+                            )
+                        },
+                    ): str,
+                    vol.Optional(
+                        CONF_WEATHER_MODEL,
+                        description={
+                            "suggested_value": self.config_entry.options.get(
+                                CONF_WEATHER_MODEL, ""
                             )
                         },
                     ): str,
