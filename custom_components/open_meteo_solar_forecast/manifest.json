@@ -1,6 +1,6 @@
 {
   "domain": "open_meteo_solar_forecast",
-  "name": "Open-Meteo Solar Forecast TEST",
+  "name": "Open-Meteo Solar Forecast",
   "codeowners": ["@rany2"],
   "config_flow": true,
   "documentation": "https://github.com/rany2/ha-open-meteo-solar-forecast",
